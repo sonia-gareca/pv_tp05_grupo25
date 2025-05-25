@@ -1,34 +1,31 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import MenuNavegacion from './components/MenuNavegacion';
+import Index from './components/Index';
+import ListaEstudiantes from './components/ListaAlumno';
+import AcercaDe from './components/AcercaDe';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NuevoAlumno from './components/NuevoAlumno';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+const [alumnos, setAlumnos] = useState([]);
+
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='container'>
+      <Routes>
+        <Route path="/" element={<MenuNavegacion />} >
+          <Route path="/index" element={<Index />} />
+          <Route path="/listaestudiantes" element={<ListaEstudiantes alumnos={alumnos}/>} />
+          <Route path="/nuevoAlumno" element={<NuevoAlumno alumnos={alumnos} setAlumnos={setAlumnos} />} />
+          <Route path="/acercade" element={<AcercaDe />} />
+        </Route>
+
+      </Routes>
+
+    </div>
   )
 }
 
