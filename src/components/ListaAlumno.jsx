@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useCallback } from 'react';
 import { Table, Button, Alert } from 'react-bootstrap';
-import NuevoAlumno from './NuevoAlumno';
+
 const ListaAlumno = ({ alumnos, eliminarAlumno}) => {
     return (
         <div>

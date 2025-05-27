@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
+
 import { Form, Button, Table, Alert } from "react-bootstrap";
-import ListaAlumno from "./ListaAlumno";
+import { useState } from "react";
 
 const NuevoAlumno = ({ alumnos, setAlumnos}) => {
   const [alumno, setAlumno] = useState({
@@ -62,18 +62,7 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
     }
   };
 
-  // Se usa useCallback en la funcion para ocultar el alumno de la lista
-      const eliminarAlumno = useCallback(
-        (luAEliminar) => {
-          setAlumnos((prevAlumnos) =>
-            prevAlumnos.map((a) =>
-              a.lu === luAEliminar ? { ...a, eliminado: true} : a
-            )
-          );
-        },
-        [setAlumnos]
-      );
-
+  
   return (
     <div>
       <h1>Registrar Nuevo Alumno</h1>
