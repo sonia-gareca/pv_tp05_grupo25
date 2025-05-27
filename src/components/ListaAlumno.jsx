@@ -1,5 +1,5 @@
 import { Table } from 'react-bootstrap';
-
+import { Link } from 'react-router-dom';
 
 const ListaAlumno = ({ alumnos }) => {
     return (
@@ -27,6 +27,11 @@ const ListaAlumno = ({ alumnos }) => {
                             <td>{a.email}</td>
                             <td>{a.domicilio}</td>
                             <td>{a.telefono}</td>
+                            <td>
+                                <Link to={`/alumnos/${a.lu}/editar`}>
+                                    <Button variant="warning" size="sm">Editar</Button>
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
