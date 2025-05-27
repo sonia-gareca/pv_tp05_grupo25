@@ -27,7 +27,7 @@ const actualizarAlumno = (alumnoActualizado) => {
           <Route path="/listaestudiantes" element={<ListaEstudiantes alumnos={alumnos}/>} />
           <Route path="/nuevoAlumno" element={<NuevoAlumno alumnos={alumnos} setAlumnos={setAlumnos} />} />
           <Route path="/acercade" element={<AcercaDe />} />
-          <Route path="/editar" element={
+          <Route path="/alumnos/:lu/editar" element={
             <EditarAlumno alumnos={alumnos} actualizarAlumno={actualizarAlumno} />
           } />
         </Route>
