@@ -6,12 +6,18 @@ import ListaEstudiantes from './components/ListaAlumno';
 import AcercaDe from './components/AcercaDe';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NuevoAlumno from './components/NuevoAlumno';
+import EditarAlumno from './components/EditarAlumno';
 
 
 function App() {
   
 const [alumnos, setAlumnos] = useState([]);
 
+const actualizarAlumno = (alumnoActualizado) => {
+    setAlumnos(prev =>
+      prev.map(a => a.lu === alumnoActualizado.lu ? alumnoActualizado : a)
+    );
+  };
 
   return (
     <div className='container'>
@@ -21,6 +27,9 @@ const [alumnos, setAlumnos] = useState([]);
           <Route path="/listaestudiantes" element={<ListaEstudiantes alumnos={alumnos}/>} />
           <Route path="/nuevoAlumno" element={<NuevoAlumno alumnos={alumnos} setAlumnos={setAlumnos} />} />
           <Route path="/acercade" element={<AcercaDe />} />
+          <Route path="/editar" element={
+            <EditarAlumno alumnos={alumnos} actualizarAlumno={actualizarAlumno} />
+          } />
         </Route>
 
       </Routes>

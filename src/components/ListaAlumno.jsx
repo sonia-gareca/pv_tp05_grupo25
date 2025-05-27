@@ -1,8 +1,7 @@
+import { Link } from 'react-router-dom';
 import { useCallback } from 'react';
 import { Table, Button, Alert } from 'react-bootstrap';
 import NuevoAlumno from './NuevoAlumno';
-
-
 const ListaAlumno = ({ alumnos, eliminarAlumno}) => {
     return (
         <div>
@@ -35,12 +34,16 @@ const ListaAlumno = ({ alumnos, eliminarAlumno}) => {
                             <td>{a.domicilio}</td>
                             <td>{a.telefono}</td>
                             <td>
-                                <Button
-                                    variant="danger" // Es un botón rojo de Bootstrap
-                                    onClick={() => eliminarAlumno(a.lu)} // Llamamos a la función con el LU del alumno
-                                    size="sm" // Botón pequeño
-                                >
-                                    Eliminar
+                             <Link to={`/alumnos/${a.lu}/editar`}>
+                                  <Button variant="warning" size="sm">Editar</Button>
+                                </Link>
+
+                                 <Button
+                                     variant="danger"
+                                  onClick={() => eliminarAlumno(a.lu)}
+                                      size="sm"
+                                   >
+                                   Eliminar
                                 </Button>
                             </td>
                         </tr>
