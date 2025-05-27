@@ -65,4 +65,61 @@ const EditarAlumno = ({ alumnos, actualizarAlumno }) => {
                         onChange={handleChange}
                         required
                     />
-               
+
+
+ </Form.Group>
+
+                <Form.Group controlId="curso">
+                    <Form.Label>Curso</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="curso"
+                        value={formData.curso}
+                        onChange={handleChange}
+                        required
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="domicilio">
+                    <Form.Label>Domicilio</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="domicilio"
+                        value={formData.domicilio}
+                        onChange={handleChange}
+                        required
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="telefono">
+                    <Form.Label>Teléfono</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="telefono"
+                        value={formData.telefono}
+                        onChange={handleChange}
+                        required
+                    />
+                </Form.Group>
+
+                <Button variant="primary" type="submit" className="mt-3">
+                    Guardar Cambios
+                </Button>
+            </Form>
+        </div>
+    );
+};
+
+export default EditarAlumno;              
+// olvide escribir el mensaje en el commit anterior y hago este
