@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Form, Button, Table, Alert } from "react-bootstrap";
+import ListaAlumno from "./ListaAlumno";
 
 const NuevoAlumno = ({ alumnos, setAlumnos}) => {
   const [alumno, setAlumno] = useState({
@@ -9,7 +10,8 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
     curso: "",
     email: "",
     domicilio: "",
-    telefono: ""
+    telefono: "",
+    eliminado: false,
   });
   
    const [showAlert, setShowAlert] = useState(false);
@@ -33,8 +35,16 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
       alumno.domicilio &&
       alumno.telefono
     ) {
+      // Validamos si el LU existe y no este eliminado
+      const luDuplicado = alumnos.some(
+        (a) => a.lu === alumno.lu && !a.eliminado
+      );
+      if (luDuplicado) {
+        alert("El LU ya existe para un alumno activo. Por favor, ingrese un LU único.");
+        return;
+      }
         // Agregar el nuevo alumno al estado
-      setAlumnos([...alumnos, alumno]);
+      setAlumnos([...alumnos, { ...alumno, eliminado: false}]);
       setAlumno({
         lu: "",
         nombre: "",
@@ -42,12 +52,27 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
         curso: "",
         email: "",
         domicilio: "",
-        telefono: ""
+        telefono: "", 
+        eliminado: false,
       });
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 2000); // Oculta el alert después de 2 segundos
+    } else {
+      alert("Por favor, complete todos los campos para agregar un alumno.");
     }
   };
+
+  // Se usa useCallback en la funcion para ocultar el alumno de la lista
+      const eliminarAlumno = useCallback(
+        (luAEliminar) => {
+          setAlumnos((prevAlumnos) =>
+            prevAlumnos.map((a) =>
+              a.lu === luAEliminar ? { ...a, eliminado: true} : a
+            )
+          );
+        },
+        [setAlumnos]
+      );
 
   return (
     <div>
@@ -139,6 +164,7 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
           Agregar Alumno
         </Button>
       </Form>
+
 
      {/* {alumnos.length > 0 && (
         <Table striped bordered hover>

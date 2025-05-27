@@ -1,12 +1,16 @@
 import { useCallback } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button, Alert } from 'react-bootstrap';
+import NuevoAlumno from './NuevoAlumno';
 
 
-const ListaAlumno = ({ alumnos }) => {
+const ListaAlumno = ({ alumnos, eliminarAlumno}) => {
     return (
         <div>
             <h1>Lista de Alumnos</h1>
-            <Table striped bordered hover>
+            {alumnos.length === 0 ? (
+                <Alert variant='info'>No hay alumnos registrados aún</Alert>
+            ) : (
+            <Table striped bordered hover responsive>
                 <thead>
                     <tr>
                         <th>LU</th>
@@ -16,11 +20,13 @@ const ListaAlumno = ({ alumnos }) => {
                         <th>Email</th>
                         <th>Domicilio</th>
                         <th>Teléfono</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {alumnos.map((a, idx) => (
-                        <tr key={idx}>
+                        !a.eliminado && (//Solo renderiza si el alumno no esta eliminado
+                        <tr key={a.lu}>
                             <td>{a.lu}</td>
                             <td>{a.nombre}</td>
                             <td>{a.apellido}</td>
@@ -28,12 +34,23 @@ const ListaAlumno = ({ alumnos }) => {
                             <td>{a.email}</td>
                             <td>{a.domicilio}</td>
                             <td>{a.telefono}</td>
+                            <td>
+                                <Button
+                                    variant="danger" // Es un botón rojo de Bootstrap
+                                    onClick={() => eliminarAlumno(a.lu)} // Llamamos a la función con el LU del alumno
+                                    size="sm" // Botón pequeño
+                                >
+                                    Eliminar
+                                </Button>
+                            </td>
                         </tr>
+                        )
                     ))}
                 </tbody>
             </Table>
+            )}
         </div>
     )
-}
+};
 
 export default ListaAlumno;
