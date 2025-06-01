@@ -1,0 +1,28 @@
+.titulo-nuevoalumno {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #13c18d;
+  margin-bottom: 1.5rem;
+  margin-top: 2.5rem;      /* Aumenta el margen superior */
+  text-shadow: 2px 4px 16px rgba(0,0,0,0.18);
+  letter-spacing: 1px;
+  text-align: center;
+}
+.form-nuevoalumno {
+  background: #e6f9f3;
+  padding: 2rem 2.5rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.btn-nuevoalumno {
+  background-color: #13c18d;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+}
+.btn-nuevoalumno:hover {
+  background-color: #0d413e;
+}

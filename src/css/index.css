@@ -1,0 +1,48 @@
+
+.info-parrafo {
+    background-color: #0d413e;
+    color: #f6f7f6;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+.img-col {
+    min-height: 350px;
+    /* Ajusta según lo que necesites */
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+}
+
+.img-principal {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.info-caja {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.info-caja h1 {
+    font-size: 3.3rem;
+    font-weight: 800;
+    color: #13c18d;
+    margin-bottom: 1rem;
+    text-shadow: 2px 4px 16px rgba(0, 0, 0, 0.15);
+    letter-spacing: 1px;
+}
+
+.info-caja h4 {
+    margin-bottom: 1rem;
+}
+
+.info-parrafo {
+    margin-bottom: 0;
+}

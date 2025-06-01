@@ -1,12 +1,31 @@
-import React from "react";
-
-
+import { Card, Row, Col } from "react-bootstrap";
+import soniaImg from '../imagenes/sonia.jpeg';
+import joaquinImg from '../imagenes/joaquin.jpeg';
+import antonioImg from '../imagenes/antonio.jpeg';
+import angeloImg from '../imagenes/angelo.jpeg';
+import '../css/acercaDe.css'; // Asegúrate de tener un archivo CSS para estilos personalizados
 const AcercaDe = ()=>{
         const desarrolladores = [
-        { name: 'Sonia Gareca', rol: 'Desarrolladora Frontend' },
-        { name: 'Antonio Almada', rol: 'Desarrollador Backend / Lógica' },
-        { name: 'Angelo Quiroga', rol: 'Diseño UX/UI / Frontend' },
-        { name: 'Joaquín Calermo', rol: 'Gestión de Datos / Documentación' },
+           {
+      name: 'Sonia Gareca',
+      rol: 'Desarrolladora Frontend',
+      img: soniaImg
+    },
+    {
+      name: 'Antonio Almada',
+      rol: 'Desarrollador Backend / Lógica',
+      img: antonioImg
+    },
+    {
+      name: 'Angelo Quiroga',
+      rol: 'Diseño UX/UI / Frontend',
+      img: angeloImg
+    },
+    {
+      name: 'Joaquín Calermo',
+      rol: 'Gestión de Datos / Documentación',
+      img: joaquinImg
+    },
     ];
     
 
@@ -30,16 +49,26 @@ const AcercaDe = ()=>{
         </div>
 
         <div className="equipo-desarrollo">
-            <h2>Nuestro Equipo de Desarrollo</h2>
-            <div className="developers-grid">
-            {desarrolladores.map((dev, index) => (
-                <div key={index} className="developer-card">
-                <h3>{dev.name}</h3>
-                <p>{dev.rol}</p>
-                </div>
-            ))}
-            </div>
-        </div>
+        <h2>Nuestro Equipo de Desarrollo</h2>
+        <Row className="g-4">
+          {desarrolladores.map((dev, index) => (
+            <Col key={index} xs={12} sm={6} md={3}>
+              <Card className="h-100 text-center">
+                <Card.Img
+                  variant="top"
+                  src={dev.img}
+                  alt={dev.name}
+                  style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                />
+                <Card.Body>
+                  <Card.Title>{dev.name}</Card.Title>
+                  <Card.Text>{dev.rol}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </div>
 
         <div className="contacto">
             <h2>Contacto</h2>

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { Table, Button, Alert } from 'react-bootstrap';
+import '../css/listaAlumnos.css';
 
 const ListaAlumno = ({ alumnos, eliminarAlumno}) => {
     return (
         <div>
-            <h1>Lista de Alumnos</h1>
+            <h1 className="titulo-lista">Lista de Alumnos</h1>
             {alumnos.length === 0 ? (
                 <Alert variant='info'>No hay alumnos registrados aún</Alert>
             ) : (
