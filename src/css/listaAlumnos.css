@@ -8,3 +8,25 @@
   letter-spacing: 1px;
   text-align: center;
 }
+
+.table-dark th {
+  background-color: #343a40 !important;
+  color: #fff !important;
+}
+
+.table td, .table th {
+  vertical-align: middle !important;
+}
+
+.shadow {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.rounded {
+  border-radius: 12px !important;
+}
+
+.badge-info {
+  background-color: #0dcaf0 !important;
+  color: #212529 !important;
+}

@@ -1,4 +1,3 @@
-
 import { Form, Button, Table, Alert,Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import '../css/nuevoAlumno.css'
@@ -16,6 +15,8 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
   });
   
    const [showAlert, setShowAlert] = useState(false);
+   const [showError, setShowError] = useState(false);
+   const [errorMsg, setErrorMsg] = useState("");
  // Maneja los cambios en los campos del formulario
   const handleChange = (e) => {
     setAlumno({
@@ -26,7 +27,6 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Validar que todos los campos estén completos
     if (
       alumno.lu &&
       alumno.nombre &&
@@ -36,15 +36,15 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
       alumno.domicilio &&
       alumno.telefono
     ) {
-      // Validamos si el LU existe y no este eliminado
       const luDuplicado = alumnos.some(
         (a) => a.lu === alumno.lu && !a.eliminado
       );
       if (luDuplicado) {
-        alert("El LU ya existe para un alumno activo. Por favor, ingrese un LU único.");
+        setErrorMsg("El LU ya existe para un alumno activo. Por favor, ingrese un LU único.");
+        setShowError(true);
+        setTimeout(() => setShowError(false), 2500);
         return;
       }
-        // Agregar el nuevo alumno al estado
       setAlumnos([...alumnos, { ...alumno, eliminado: false}]);
       setAlumno({
         lu: "",
@@ -57,9 +57,11 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
         eliminado: false,
       });
       setShowAlert(true);
-      setTimeout(() => setShowAlert(false), 2000); // Oculta el alert después de 2 segundos
+      setTimeout(() => setShowAlert(false), 2000);
     } else {
-      alert("Por favor, complete todos los campos para agregar un alumno.");
+      setErrorMsg("Por favor, complete todos los campos para agregar un alumno.");
+      setShowError(true);
+      setTimeout(() => setShowError(false), 2500);
     }
   };
 
@@ -67,12 +69,17 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
   return (
     <div>
       <h1 className="titulo-nuevoalumno">Registrar Nuevo Alumno</h1>
-        {showAlert && (
-        <Alert variant="success">
+      {showAlert && (
+        <Alert variant="success" className="mt-3 text-center">
           ¡Alumno agregado correctamente!
         </Alert>
       )}
-     <Form onSubmit={handleSubmit} className="mb-4 form-nuevoalumno">
+      {showError && (
+        <Alert variant="danger" className="mt-3 text-center">
+          {errorMsg}
+        </Alert>
+      )}
+     <Form onSubmit={handleSubmit} className="mb-4 form-nuevoalumno shadow p-4 rounded bg-white">
   <Row>
     <Col md={6}>
       <Form.Group className="mb-3">
@@ -83,7 +90,7 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
           value={alumno.lu}
           onChange={handleChange}
           placeholder="Ingrese el LU"
-          required
+          //required
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -94,7 +101,7 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
           value={alumno.nombre}
           onChange={handleChange}
           placeholder="Ingrese el nombre"
-          required
+          //required
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -105,7 +112,7 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
           value={alumno.apellido}
           onChange={handleChange}
           placeholder="Ingrese el apellido"
-          required
+          //required
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -116,7 +123,7 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
           value={alumno.curso}
           onChange={handleChange}
           placeholder="Ingrese el curso"
-          required
+          //required
         />
       </Form.Group>
     </Col>
@@ -129,7 +136,7 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
           value={alumno.email}
           onChange={handleChange}
           placeholder="Ingrese el email"
-          required
+          //required
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -140,7 +147,7 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
           value={alumno.domicilio}
           onChange={handleChange}
           placeholder="Ingrese el domicilio"
-          required
+          //required
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -151,7 +158,7 @@ const NuevoAlumno = ({ alumnos, setAlumnos}) => {
           value={alumno.telefono}
           onChange={handleChange}
           placeholder="Ingrese el teléfono"
-          required
+          //required
         />
       </Form.Group>
     </Col>
